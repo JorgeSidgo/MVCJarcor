@@ -21,11 +21,13 @@ function cargarController($controller)
 function cargarAccion($controllerObj, $action)
 {
 	$accion = $action;
+	$controllerObj = new $controlador();
 	$controllerObj->$accion();
 }
 
 function lanzarAccion()
 {
+	$controllerObj = new $controlador();
 	if(isset($_GET["accion"]) && method_exists($controllerObj, $_GET["action"]))
 	{
 		cargarAccion($controllerObj, $GET["action"]);
