@@ -8,13 +8,13 @@ class EntidadBase
 
 	function __construct($table)
 	{
-		$this->table = (string) $table;
+		$this->table = (string)$table;
 
 		require_once 'Conectar.php';
 
 		$this->conectar = new Conectar();
 
-		$this->db = $this->Conectar->conexion();
+		$this->db = $this->conectar->conexion();
 	}
 
 	public function getConectar()

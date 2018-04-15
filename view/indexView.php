@@ -21,9 +21,9 @@
 	</div>
 	<section class="col-lg-7 usuario" style="height:400px; overflow-y: scroll;">
 		<?php foreach($allusers as $user) { ?>
-		<?php echo $user->id; ?>
-		<?php echo $user->nombre; ?>
-		<?php echo $user->apellido; ?>
+		<?php echo $user->id; ?> -
+		<?php echo $user->nombre; ?> -
+		<?php echo $user->apellido; ?> -
 		<?php echo $user->email; ?>
 		<div class="right">
 			<a href="<?php echo $helper->url("usuarios","borrar"); ?>" id="<?php echo $user->id; ?>" class="btn btn-danger">Borrar</a>

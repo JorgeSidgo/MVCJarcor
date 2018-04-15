@@ -1,39 +1,51 @@
 <?php
 
-function cargarController($controller)
+class ControladorFrontalFunc
 {
-	$controlador = ucwords($controller).'Controller';
 
-	$strFileController = 'controller/'.$controlador.'.php';
+	private $controller;
 
-	if(!is_file($strFileController))
+	public function __construct($ctrl)
 	{
-		$strFileController = 'controller/'.ucwords(CONTROLADOR_DEFECTO).'Controller.php';
+		$this->controller = $ctrl;
 	}
 
-	require_once $strFileController;
-
-	$controllerObj = new $controlador();
-
-	return $controllerObj;
-}
-
-function cargarAccion($controllerObj, $action)
-{
-	$accion = $action;
-	$controllerObj = new $controlador();
-	$controllerObj->$accion();
-}
-
-function lanzarAccion()
-{
-	$controllerObj = new $controlador();
-	if(isset($_GET["accion"]) && method_exists($controllerObj, $_GET["action"]))
+	public function cargarController()
 	{
-		cargarAccion($controllerObj, $GET["action"]);
-	}	
-	else
+		$controlador = ucwords($this->controller).'Controller';
+
+		$strFileController = 'controller/'.$controlador.'.php';
+
+		if(!is_file($strFileController))
+		{
+			$strFileController = 'controller/'.ucwords(CONTROLADOR_DEFECTO).'Controller.php';
+		}
+
+		require_once $strFileController;
+
+		$controllerObj = new $controlador();
+
+		return $controllerObj;
+	}
+
+	public function cargarAccion($controllerObj, $action)
 	{
-		cargarAccion($controllerObj, ACCION_DEFECTO);
+		$accion = $action;
+		$controllerObj = $controllerObj."Controller";
+		$controllerObj = new $controllerObj();
+		$controllerObj->$accion();
+	}
+
+	public function lanzarAccion()
+	{
+		$controllerObj = $this->controller;
+		if(isset($_GET["accion"]) && method_exists($controllerObj, $_GET["action"]))
+		{
+			$this->cargarAccion($controllerObj, $GET["action"]);
+		}	
+		else
+		{
+			$this->cargarAccion($controllerObj, ACCION_DEFECTO);
+		}
 	}
 }

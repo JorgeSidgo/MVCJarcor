@@ -11,7 +11,7 @@ class Conectar
 
 	function __construct()
 	{
-		$dataCon = require_once '../config/database.php';
+		$dataCon = require_once 'config/database.php';
 
 		$this->driver 	= $dataCon["driver"];
 		$this->host   	= $dataCon["host"];

@@ -6,13 +6,16 @@ require_once 'core/ControladorBase.php';
 
 require_once 'core/ControladorFrontal.func.php';
 
+
 if(isset($_GET["controller"]))
 {
-	$controllerObj = cargarController($_GET["controller"]);
+	$cFF = new ControladorFrontalFunc($_GET["controller"]);
+	$controllerObj = $cFF->cargarController();
 
-	lanzarAccion($controllerObj);
+	$cFFlanzarAccion($controllerObj);
 }
 else{
-	$controllerObj = cargarController(CONTROLADOR_DEFECTO);
-	lanzarAccion($controllerObj);
+	$cFF = new ControladorFrontalFunc(CONTROLADOR_DEFECTO);
+	$controllerObj = $cFF->cargarController();
+	$cFF->lanzarAccion($controllerObj);
 }
