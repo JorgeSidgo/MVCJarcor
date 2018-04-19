@@ -18,16 +18,16 @@ function cargarController($controller)
 	return $controllerObj;
 }
 
-function cargarAccion($controller, $action)
+function cargarAccion($controllerObj, $action)
 {
 	$accion = $action;
-	$controllerObj = new $controller();
+	$controllerObj = new $controlador();
 	$controllerObj->$accion();
 }
 
-function lanzarAccion($controller)
+function lanzarAccion()
 {
-	$controllerObj = new $controller();
+	$controllerObj = new $controlador();
 	if(isset($_GET["accion"]) && method_exists($controllerObj, $_GET["action"]))
 	{
 		cargarAccion($controllerObj, $GET["action"]);

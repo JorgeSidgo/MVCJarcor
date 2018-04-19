@@ -23,7 +23,7 @@ class ControladorBase
 
 		$helper = new AyudaVistas();
 
-		$data = 'view/'.$vista.'View.php';
+		$data = '../view/'.$vista.'View.php';
 
 		require_once $data;
 	}
