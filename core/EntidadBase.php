@@ -14,7 +14,7 @@ class EntidadBase
 
 		$this->conectar = new Conectar();
 
-		$this->db = $this->Conectar->conexion();
+		$this->db = $this->conectar->conexion();
 	}
 
 	public function getConectar()
@@ -31,12 +31,12 @@ class EntidadBase
 	{
 		$query = $this->db->query("SELECT * FROM $this->table ORDER BY id DESC");
 
-		while($row = $query->fetch_object())
-		{
-			$resulset = $row;
-		}
-
-		return $resulset;
+		// while($row = $query->fetch_object())
+		// {
+		// 	$resulset = $row;
+		// }
+		echo $query;
+		// return $resulset;
 	}
 
 	public function getById($id)
